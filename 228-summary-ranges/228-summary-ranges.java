@@ -112,14 +112,8 @@ class Solution {
             int k=i;
             for(k=i;k<nums.length-1;k++)
             {
-                if(nums[k]+1==nums[k+1])
-                {
-                    
-                }
-                else
-                {
+                if(nums[k]+1!=nums[k+1])
                     break;
-                }
             }
             if(i!=k)
             {
