@@ -4,6 +4,7 @@ class Solution {
         if(nums.length==0)
             return str;
 int i=0;
+        int j=0;
         for(i=0;i<nums.length;i++)
         {
             int k=i;
