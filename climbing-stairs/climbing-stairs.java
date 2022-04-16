@@ -20,7 +20,7 @@ class Solution {
     }
     public int climbStairs(int n) {
          int[] arr = new int[n];
-        arr[0] = 0;
+   
         
         return feb(n,arr);
     }
