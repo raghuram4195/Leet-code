@@ -1,44 +1,59 @@
 class MyQueue {
-        Stack<Integer> s1 = new Stack<>();
-        Stack<Integer> s2 = new Stack<>();
+    Stack<Integer> s1 = new Stack<>();
+    Stack<Integer> s2 = new Stack<>();
     public MyQueue() {
-
+        s1.clear();
+        s2.clear();
     }
     
     public void push(int x) {
-    s1.push(x);
+        s1.add(x);
     }
     
     public int pop() {
         int n = s1.size();
-            for(int i=0;i<n-1;i++)
-            {
-                s2.push(s1.pop());
-            }
-        int kk =s1.pop();
+        s2.clear();
+        for(int i=0;i<n;i++)
+        {
+            int temp = s1.pop();
+            s2.push(temp);
+            
+        }
+        int res = s2.peek();
+        s2.pop();
+        System.out.println(n);
+        System.out.println(s2.size());
         for(int i=0;i<n-1;i++)
         {
-            s1.push(s2.pop());
+            int temp = s2.pop();
+            s1.push(temp);
+            System.out.println(s1.peek());
         }
-        return kk;
+        System.out.println(s1.size());
+        return res;
     }
     
     public int peek() {
         int n = s1.size();
-            for(int i=0;i<n-1;i++)
-            {
-                s2.push(s1.pop());
-            }
-        int kk =s1.peek();
-        for(int i=0;i<n-1;i++)
+        s2.clear();
+        for(int i=0;i<n;i++)
         {
-            s1.push(s2.pop());
+            int temp = s1.pop();
+            s2.push(temp);
+            
         }
-        return kk;
+        int res = s2.peek();
+
+        for(int i=0;i<n;i++)
+        {
+            int temp = s2.pop();
+            s1.push(temp);
+        }
+        return res;
     }
     
     public boolean empty() {
-        return s1.empty();
+        return s1.isEmpty();
     }
 }
 
