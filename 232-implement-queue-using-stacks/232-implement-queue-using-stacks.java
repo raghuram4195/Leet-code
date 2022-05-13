@@ -21,15 +21,15 @@ class MyQueue {
         }
         int res = s2.peek();
         s2.pop();
-        System.out.println(n);
-        System.out.println(s2.size());
+       //System.out.println(n);
+        //System.out.println(s2.size());
         for(int i=0;i<n-1;i++)
         {
             int temp = s2.pop();
             s1.push(temp);
-            System.out.println(s1.peek());
+           // System.out.println(s1.peek());
         }
-        System.out.println(s1.size());
+        //System.out.println(s1.size());
         return res;
     }
     
