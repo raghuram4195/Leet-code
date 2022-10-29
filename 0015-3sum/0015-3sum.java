@@ -1,73 +1,46 @@
 class Solution {
-    private static void searchPair(int[] arr, int targetSum, int left, List<List<Integer>> triplets) {
-    int right = arr.length - 1;
-    while (left < right) {
-      int currentSum = arr[left] + arr[right];
-      if (currentSum == targetSum) { // found the triplet
-        triplets.add(Arrays.asList(-targetSum, arr[left], arr[right]));
-        left++;
-        right--;
-        while (left < right && arr[left] == arr[left - 1])
-          left++; // skip same element to avoid duplicate triplets
-        while (left < right && arr[right] == arr[right + 1])
-          right--; // skip same element to avoid duplicate triplets
-      } else if (targetSum > currentSum)
-        left++; // we need a pair with a bigger sum
-      else
-        right--; // we need a pair with a smaller sum
-    }
-  }
-    public List<List<Integer>> threeSum(int[] arr) {
-//         List<Integer> lt = new ArrayList<>();
-//         List<List<Integer>> res = new ArrayList<>();
-//         List<Integer> temp;
-//         //Arrays.sort(nums);
-//         int n = nums.length;
-//         for(int i=0;i<n;i++)
-//         {
-//             int target = -1 * nums[i];
-//             for(int j=0;j<n;j++)
-//             {
-//                 if(j==i)
-//                     continue;
-//                 if(lt.contains(target - nums[j]) )
-//                 {
-//                     temp = new ArrayList<>();
-//                     int[] kk = new int[3];
-//                     kk[0] = nums[i];
-//                     kk[1] = nums[j];
-//                     kk[2] = target - nums[j];
-//                     Arrays.sort(kk);
-//                     temp.add(kk[0]);
-//                     temp.add(kk[1]);
-//                     temp.add(kk[2]);
-                    
+    public List<List<Integer>> threeSum(int[] nums) {
+        HashSet<List<Integer>> lt = new HashSet<>();
+        
+         Arrays.sort(nums);
+        for(int i=0;i<nums.length-2;i++)
+        {
+            
+            int target = 0 - nums[i];
+            // if(i!=0)
+            // {
+            //     if(nums[i]==nums[i-1])
+            //         continue;
+            // }
 
-                    
-//                     if(res.contains(temp))
-//                     {
-//                         continue;
-//                     }
-//                     res.add(temp);
-//                 }
+            int left = i+1;
+            int right =nums.length-1;
+            while(left<right)
+            {
+                int tts = nums[i]+nums[left]+nums[right];
+                if(tts>0)
+                    right--;
+                else if(tts<0)
+                    left++;
                 
-//                 lt.add(nums[j]);
-//             }
-//             lt.clear();
-//         }
-//         return res;
-        
-        
-        
-        
-            Arrays.sort(arr);
-    List<List<Integer>> triplets = new ArrayList<>();
-    for (int i = 0; i < arr.length - 2; i++) {
-      if (i > 0 && arr[i] == arr[i - 1]) // skip same element to avoid duplicate triplets
-        continue;
-      searchPair(arr, -arr[i], i + 1, triplets);
-    }
+                else 
+                {
+                    ArrayList<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[left]);
+                    temp.add(nums[right]);
+                    
+                    lt.add(temp);
+                    left++;
+                    right--;
+                }
 
-    return triplets;
+            }
+            
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        for(List<Integer> kk:lt)
+            res.add(kk);
+        return res;
     }
 }
