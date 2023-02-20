@@ -14,20 +14,19 @@
  * }
  */
 class Solution {
-    static TreeNode root;
-    public static TreeNode cc(int[] nums, int start, int end)
+    public static TreeNode getNode(int[] nums, int start, int end)
     {
-        if(start>end)
+        if(start > end)
             return null;
-        TreeNode node = new TreeNode();
-        int mid = (start + end)/2;
-        node.val = nums[mid];
-        node.left = cc(nums,start,mid-1);
-        node.right = cc(nums,mid+1,end);
+        int mid = start + end;
+        mid = mid / 2;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = getNode(nums,start,mid-1);
+        node.right = getNode(nums,mid+1,end);
+        
         return node;
     }
     public TreeNode sortedArrayToBST(int[] nums) {
-        TreeNode res = cc(nums,0,nums.length-1);
-        return res;
+        return getNode(nums,0,nums.length-1);
     }
 }
